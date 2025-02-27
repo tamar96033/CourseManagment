@@ -1,0 +1,182 @@
+@if(!register){<button mat-button (click)="registerFunc()">register</button>}
+@if(!login){<button mat-button (click)="loginFunc()">login</button>}
+
+@if(login){
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-card>
+        <mat-card-content>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+                @if(myForm.get('email')?.hasError('required')){
+                <mat-error>
+                    Email is required.
+                </mat-error>}
+                @if(myForm.get('email')?.hasError('email')){
+                <mat-error>
+                    Please enter a valid email address.
+                </mat-error>}
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" />
+                @if(myForm.get('password')?.hasError('required')){
+                <mat-error>
+                    Password is required.
+                </mat-error>}
+                @if(myForm.get('password')?.hasError('minlength')){
+                <mat-error>
+                    Password must be at least 6 characters long.
+                </mat-error>}
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">
+                login
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+}
+
+
+
+@if(register){
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="name" />
+                @if(myForm.get('name')?.hasError('required')){
+                <mat-error>
+                    Username is required.
+                </mat-error>}
+                @if(myForm.get('name')?.hasError('minlength')){
+                <mat-error>
+                    Username must be at least 3 characters long.
+                </mat-error>}
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+                @if(myForm.get('email')?.hasError('required')){
+                <mat-error>
+                    Email is required.
+                </mat-error>}
+                @if(myForm.get('email')?.hasError('email')){
+                <mat-error>
+                    Please enter a valid email address.
+                </mat-error>}
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" />
+                @if(myForm.get('password')?.hasError('required')){
+                <mat-error>
+                    Password is required.
+                </mat-error>}
+                @if(myForm.get('password')?.hasError('minlength')){
+                <mat-error>
+                    Password must be at least 6 characters long.
+                </mat-error>}
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>role</mat-label>
+                <input matInput type="text" formControlName="role" />
+                
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">
+                Register
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+}
+<!-- <mat-card class="auth-card">
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+      <mat-tab label="Login">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-container">
+          <mat-card-content>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+              <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                Please enter a valid email address.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" />
+              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                Password is required.
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+                Password must be at least 6 characters long.
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+              Login
+            </button>
+          </mat-card-actions>
+        </form>
+      </mat-tab>
+  
+      <mat-tab label="Register">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-container">
+          <mat-card-content>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username" />
+              <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+                Username is required.
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('username')?.hasError('minlength')">
+                Username must be at least 3 characters long.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+              <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+                Please enter a valid email address.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" />
+              <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+                Password is required.
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+                Password must be at least 6 characters long.
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+              Register
+            </button>
+          </mat-card-actions>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card> -->

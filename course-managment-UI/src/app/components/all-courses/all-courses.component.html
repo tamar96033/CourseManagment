@@ -1,0 +1,14 @@
+<p>all-courses works!</p>
+
+
+@for(course of courses; track course.id){
+<div>
+    {{course.title}}
+</div>
+<!-- @if(!rashum) -->
+<button>register</button>
+<!-- @else -->
+<button>leave</button>
+}@empty{
+    <div>there isnt courses</div>
+}

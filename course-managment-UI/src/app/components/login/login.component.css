@@ -1,0 +1,25 @@
+mat-form-field {
+    margin-right: 12px;
+  }
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  mat-card {
+    width: 400px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    height: 100vh;          /* Sets container height to full viewport */
+  }
