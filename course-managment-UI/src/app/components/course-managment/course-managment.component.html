@@ -1,11 +1,9 @@
-<p>course-managment works!</p>
-
 
 <button mat-button (click)="addClick()">add course</button>
 <button mat-button (click)="deleteClick()">delete course</button>
 <button mat-button (click)="updateClick()">change course</button>
 
-@if(addFlag){
+@if(addFlag && !isForbidden){
 <form [formGroup]="myForm" (ngSubmit)="onSubmitAdd()" class="form-container">
     <mat-card>
         <mat-card-content>
@@ -37,7 +35,7 @@
 </form>
 }
 
-@if(deleteFlag){
+@if(deleteFlag && !isForbidden){
 <form [formGroup]="myForm" (ngSubmit)="onSubmitDelete()" class="form-container">
     <mat-card>
         <mat-card-content>
@@ -62,7 +60,7 @@
 
 }
 
-@if(updateFlag){
+@if(updateFlag && !isForbidden){
     <form [formGroup]="myForm" (ngSubmit)="onSubmitUpdate()" class="form-container">
         <mat-card>
             <mat-card-content>
@@ -100,4 +98,8 @@
             </mat-card-actions>
         </mat-card>
     </form>
+}
+
+@if(isForbidden){
+    <div>you are forbidden do this action</div>
 }

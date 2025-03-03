@@ -1,19 +1,18 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { HomePageDetailsComponent } from '../home-page-details/home-page-details.component';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HomePageDetailsComponent, CommonModule],
+  imports: [ CommonModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  @ViewChild(HomePageDetailsComponent) childComponent!: HomePageDetailsComponent; 
+  // @ViewChild(HomePageDetailsComponent) childComponent!: HomePageDetailsComponent; 
 
-  changeChildMessage() {
-    this.childComponent.changeMessage('Message changed from Parent Component!'); 
-  }
+  // changeChildMessage() {
+  //   this.childComponent.changeMessage('Message changed from Parent Component!'); 
+  // }
 
   
   today: number = Date.now(); 

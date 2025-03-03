@@ -53,5 +53,40 @@ export class CourseService {
 
     return this.http.put<void>(`http://localhost:3000/api/courses/${courseId}`, courseData, { headers });
   }
+
+  
+  enrollStudent(courseId: number, userId: number): Observable<any> {
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(`http://localhost:3000/api/courses/${courseId}/enroll`, { userId }, { headers });
+  }
+
+  unenrollStudent(courseId: number, userId: number): Observable<any> {
+    const token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete(`http://localhost:3000/api/courses/${courseId}/unenroll`, {
+      headers,
+      body: { userId }
+    });
+  }
+
+
+  
+  getCourseById(courseId: string): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(`http://localhost:3000/api/courses/${courseId}`, { headers });
+  }
 } 
 

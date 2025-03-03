@@ -1,0 +1,35 @@
+<p>course-detail works!</p>
+
+
+
+
+
+@if(course){
+<mat-card>
+    <mat-card-title>{{ course.title }}</mat-card-title>
+    <mat-card-content>
+        <p>{{ course.description }}</p>
+
+        lessons:
+        @for(lesson of lessons; track lesson.id){
+        <div>{{lesson.title}} {{lesson.id}}</div>
+        
+        }@empty {
+        <div>there isnt lessons</div>
+        }
+
+        <button mat-raised-button color="primary" (click)="joinCourse(course.id)">Enroll</button>
+        <button mat-raised-button color="primary" (click)="leaveCourse(course.id)">unEnroll</button>
+    </mat-card-content>
+</mat-card>
+
+@if(isJoined){
+    <div>you joined successfully</div>
+}
+
+@if(isLeave){
+    <div>you leaved successfully</div>
+}
+
+}
+

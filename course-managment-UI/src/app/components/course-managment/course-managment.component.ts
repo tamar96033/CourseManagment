@@ -19,6 +19,7 @@ import { CourseService } from '../../services/course.service';
 export class CourseManagmentComponent {
 
   myForm: FormGroup;
+  isForbidden = false
 
 
   constructor(private fb: FormBuilder, private courseService: CourseService) {
@@ -62,6 +63,7 @@ export class CourseManagmentComponent {
       },
       (error) => {
         console.error('Error fetching courses:', error);
+        this.isForbidden = true
       })
   }
 
@@ -73,6 +75,7 @@ export class CourseManagmentComponent {
       },
       (error) => {
         console.error('Error fetching courses:', error);
+        this.isForbidden = true
       })
 
   }
@@ -90,16 +93,18 @@ export class CourseManagmentComponent {
 
       },
       (error) => {
-        console.error('Error fetching courses:', error);
+        console.error('Error fetching courses:', error)
+        this.isForbidden = true
       })
 
-    this.courseService.updateCourse('1', courseData).subscribe(
-      (data) => {
-        console.log(data);
+    // this.courseService.updateCourse('1', courseData).subscribe(
+    //   (data) => {
+    //     console.log(data);
 
-      },
-      (error) => {
-        console.error('Error fetching courses:', error);
-      })
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching courses:', error);
+    //     this.isForbidden = true
+    //   })
   }
 }

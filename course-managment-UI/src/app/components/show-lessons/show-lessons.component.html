@@ -1,0 +1,10 @@
+
+
+@for(lesson of lessons; track lesson.id){
+    <div>{{lesson.title}}</div>
+}@empty {
+    <div>there isnt lessons</div>
+}
+
+
+<app-lessons-managment></app-lessons-managment>

@@ -1,0 +1,73 @@
+
+<button mat-button (click)="isCreateF()">create new lesson</button>
+<button mat-button (click)="isUpdateF()">update</button>
+<button mat-button (click)="isDeleteF()">delete</button>
+
+@if(isCreate){
+    <form (ngSubmit)="createNewLesson()" class="lesson-form">
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput [(ngModel)]="title" name="title" required>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Content</mat-label>
+          <textarea matInput [(ngModel)]="content" name="content" required></textarea>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Course ID</mat-label>
+          <input matInput type="number" [(ngModel)]="courseId" name="courseId" required>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" type="submit">Add Lesson</button>
+      </form>
+      
+}
+
+@if(isUpdate){
+    <form [formGroup]="lessonForm" (ngSubmit)="updateLesson()">
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" required>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Content</mat-label>
+          <textarea matInput formControlName="content" required></textarea>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Course ID</mat-label>
+          <input matInput type="number" formControlName="courseId" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>lesson ID</mat-label>
+            <input matInput type="number" formControlName="lessonId" required>
+          </mat-form-field>
+        
+      
+        <button mat-raised-button color="primary" type="submit">Update Lesson</button>
+      </form>
+}
+
+@if(isDelete){
+    <form #lessonForm="ngForm" (ngSubmit)="deleteLesson()">
+        <mat-form-field appearance="fill">
+          <mat-label>Course ID</mat-label>
+          <input matInput name="courseId" [(ngModel)]="courseId" required>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Lesson ID</mat-label>
+          <input matInput name="lessonId" [(ngModel)]="lessonId" required>
+        </mat-form-field>
+      
+        <button mat-raised-button color="warn" type="submit" [disabled]="!courseId || !lessonId">Delete Lesson</button>
+      </form>
+}
+
+@if(isSuccedded){
+    <div>Data saved successfully</div>
+}

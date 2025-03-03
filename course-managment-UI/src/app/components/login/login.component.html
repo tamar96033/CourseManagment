@@ -1,7 +1,7 @@
-@if(!register){<button mat-button (click)="registerFunc()">register</button>}
-@if(!login){<button mat-button (click)="loginFunc()">login</button>}
+@if(!register && !isLogin){<button mat-button (click)="registerFunc()">register</button>}
+@if(!login && !isLogin){<button mat-button (click)="loginFunc()">login</button>}
 
-@if(login){
+@if(login && !isLogin){
 
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-container">
     <mat-card>
@@ -42,9 +42,7 @@
 </form>
 }
 
-
-
-@if(register){
+@if(register && !isLogin){
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-container">
     <mat-card>
         <mat-card-content>
@@ -100,6 +98,11 @@
     </mat-card>
 </form>
 }
+
+@if(isLogin){
+  <div>you are conected</div>
+}
+
 <!-- <mat-card class="auth-card">
     <mat-tab-group [(selectedIndex)]="selectedTabIndex">
       <mat-tab label="Login">

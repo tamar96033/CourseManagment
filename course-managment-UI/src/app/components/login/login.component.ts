@@ -28,6 +28,8 @@ export class LoginComponent {
   register: boolean = false;
   login: boolean = false
 
+  isLogin = false
+
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.myForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -51,6 +53,8 @@ export class LoginComponent {
               response => {
                 console.log('Login successful', response);
                 localStorage.setItem('token', response.token)
+                localStorage.setItem('userId', response.userId)
+                this.isLogin = true
               },
               error => {
                 console.error('Login failed', error);
@@ -68,6 +72,8 @@ export class LoginComponent {
           response => {
             console.log('Login successful', response);
             localStorage.setItem('token', response.token)
+            localStorage.setItem('userId', response.userId)
+            this.isLogin = true
           },
           error => {
             console.error('Login failed', error);
@@ -77,7 +83,6 @@ export class LoginComponent {
 
     } else {
       throw console.error('the file is not valid');
-
     }
   }
 

@@ -1,14 +1,30 @@
 <p>all-courses works!</p>
 
+<mat-card>
+    <mat-card-title>Courses</mat-card-title>
+    <mat-card-content>
+        <mat-list>
+            @for(course of courses; track course.id){
+            <mat-list-item>
+                <a [routerLink]="['/courses', course.id]">{{ course.title }}</a>
+                {{course.id}}
+            </mat-list-item>
+            }
+        </mat-list>
+    </mat-card-content>
+</mat-card>
 
-@for(course of courses; track course.id){
-<div>
+<!-- @for(course of courses; track course.id){
+<div (click)="showDetails(course.id)">
     {{course.title}}
-</div>
-<!-- @if(!rashum) -->
-<button>register</button>
-<!-- @else -->
-<button>leave</button>
-}@empty{
+    {{course.id}}
+    @if(isShowDetails){
+    <app-course-detail [courseId]="courseSelected"></app-course-detail>
+    } -->
+<!-- <app-show-lessons [courseId]="course.id"></app-show-lessons> -->
+<!-- </div>
+<button (click)="joinCourse(course.id)">join</button> -->
+<!-- <button (click)="leaveCourse(course.id)">leave</button> -->
+<!-- }@empty{
     <div>there isnt courses</div>
-}
+} -->
