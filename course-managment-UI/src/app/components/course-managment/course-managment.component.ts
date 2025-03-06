@@ -82,10 +82,15 @@ export class CourseManagmentComponent {
 
   onSubmitUpdate() {
     const courseData = {
-      ...this.myForm.value.title,
-      ...this.myForm.value.content
+      // ...this.myForm.value.title,
+      // ...this.myForm.value.content
+      title: this.myForm.value.title,
+      description: this.myForm.value.content,
+      teacherId: 1
     }
     console.log(this.myForm.value.id);
+    console.log(courseData);
+    
 
     this.courseService.updateCourse(this.myForm.value.id, courseData).subscribe(
       (data) => {
